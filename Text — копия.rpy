@@ -4367,8 +4367,8 @@ label BedEnd:
     v "Пойдем назад спать."
     "Мы вернулись в свои кровати."
     show blink
-     show unblink 
-     show blinking
+    show unblink 
+    show blinking
     scene black with dissolve2
     "…"
     #Картинка комнаты
