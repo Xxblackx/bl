@@ -163,11 +163,11 @@ init:
     transform Q00:
         pos(0,0)
     transform trisss:
-        zoom 1.05 anchor (48,27)
-        ease 0.20 pos (0, 0)
-        ease 0.20 pos (25,25)
-        ease 0.20 pos (0, 0)
-        ease 0.20 pos (-25,25)
+        zoom 1.05anchor (48,27)
+        ease 0.20pos (0, 0)
+        ease 0.20pos (25,25)
+        ease 0.20pos (0, 0)
+        ease 0.20pos (-25,25)
         repeat(5)
 label Texr_Prolog_0_Test_for_snow: 
     $ persistent.sprite_time = "night"
@@ -747,7 +747,7 @@ label Proverc_music_club:
     play sound sfx_open_door_1
     scene bg int_musclub_day with dissolve2
     "Внутри и правда был только Кирилл Дмитриевич, который что-то перебирал то на гитаре, то на пианино, то на барабанах."
-    play sound sfx_miku_song_learn1
+    play sound sfx_miku_song_learn1 loop
     play ambience ambience_music_club_day loop
     show Kirill_defolt
     #Пусть играет какая-нибудь моя музыка на заднем плане, либо разыгровку я запишу какую-нибудь спокойную
@@ -772,6 +772,7 @@ label Proverc_music_club:
     hide Kirill_defolt
     "Мы вышли из кружка."
     stop ambience
+    stop sound
     jump Proverca_map_day_2
 
 label Proverc_library:
@@ -1311,8 +1312,11 @@ label Day_3:
     "*Теперь же реальность другая - вот она… "
     ""
     scene House_in_at_day
+    play ambience ambience_int_cabin_day
+    play sound sfx_knock_door2
     "В дверь постучали."
     "Я не стал будить брата, быстро накинул на себя одежду и открыл дверь. "  
+    play sound sfx_open_door_1
     #Картинка меняется на “Домик снаружи”
     "Стучался Дима."
     show Dima_defolt
@@ -1324,6 +1328,7 @@ label Day_3:
     dz "Утренняя!"
     hide Dima_defolt
     "После этих слов пацан убежал в сторону площади."
+    play sound sfx_close_door_1
     "*Тысячу лет не делал зарядку… и ещё столько же не делал бы!"
     "Но делать было нечего. Я растормошил брата и передал ему последние новости."
     v "Они с дуба рухнули?"
@@ -1336,7 +1341,11 @@ label Day_3:
     "*А вдруг в этом мире в 7:52 солнце выходит за юпитер, поэтому зарядка получается максимально эффективной."
     d "Я с тобой согласен."
     "Ваня ничего не ответил."
+    play sound sfx_open_door_1
+    stop ambience
     ""
+    play sound sfx_close_door_1
+    play ambience ambience_camp_center_day
     scene bg ext_house_of_un_day with dissolve2 
     #Картика меняется на “домик снаружи”
     "Через некоторое время мы вышли из домика и быстрым шагом пошли к площади."
