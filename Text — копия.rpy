@@ -747,7 +747,7 @@ label Proverc_music_club:
     play sound sfx_open_door_1
     scene bg int_musclub_day with dissolve2
     "Внутри и правда был только Кирилл Дмитриевич, который что-то перебирал то на гитаре, то на пианино, то на барабанах."
-    play sound sfx_miku_song_learn1 loop
+    play sound sfx_miku_song_learn1
     play ambience ambience_music_club_day loop
     show Kirill_defolt
     #Пусть играет какая-нибудь моя музыка на заднем плане, либо разыгровку я запишу какую-нибудь спокойную
@@ -772,7 +772,6 @@ label Proverc_music_club:
     hide Kirill_defolt
     "Мы вышли из кружка."
     stop ambience
-    stop sound
     jump Proverca_map_day_2
 
 label Proverc_library:
@@ -1312,11 +1311,8 @@ label Day_3:
     "*Теперь же реальность другая - вот она… "
     ""
     scene House_in_at_day
-    play ambience ambience_int_cabin_day
-    play sound sfx_knock_door2
     "В дверь постучали."
     "Я не стал будить брата, быстро накинул на себя одежду и открыл дверь. "  
-    play sound sfx_open_door_1
     #Картинка меняется на “Домик снаружи”
     "Стучался Дима."
     show Dima_defolt
@@ -1328,7 +1324,6 @@ label Day_3:
     dz "Утренняя!"
     hide Dima_defolt
     "После этих слов пацан убежал в сторону площади."
-    play sound sfx_close_door_1
     "*Тысячу лет не делал зарядку… и ещё столько же не делал бы!"
     "Но делать было нечего. Я растормошил брата и передал ему последние новости."
     v "Они с дуба рухнули?"
@@ -1341,11 +1336,7 @@ label Day_3:
     "*А вдруг в этом мире в 7:52 солнце выходит за юпитер, поэтому зарядка получается максимально эффективной."
     d "Я с тобой согласен."
     "Ваня ничего не ответил."
-    play sound sfx_open_door_1
-    stop ambience
     ""
-    play sound sfx_close_door_1
-    play ambience ambience_camp_center_day
     scene bg ext_house_of_un_day with dissolve2 
     #Картика меняется на “домик снаружи”
     "Через некоторое время мы вышли из домика и быстрым шагом пошли к площади."
@@ -2220,7 +2211,7 @@ label GoDiner:
     hide Leva_defolt
     d "А вы как?"
     show Leva_defolt
-    "Мы рисовали стенгазету, разговаривали обо всем... Секунду."
+    l "Мы рисовали стенгазету, разговаривали обо всем... Секунду."
     hide Leva_defolt
     "Лёва пошёл в сторону Димы, чтобы о чем-то с ним поговорить. Лицо его было довольно серьезное."
     v "И что он опять успел натворить..."
@@ -2314,16 +2305,21 @@ label GoDiner:
     d "Ну садись, Димас."
     "Он сел рядом."
     "После к нам подошёл ещё и Кирилл Дмитриевич."
+    show Kirill_defolt at my_left
     "Видимо, младшие отряды накупались и разошлись по домам, либо вышли на берег."
     "Вместе мы приняли решение строить не замок, а что-то типа плана-модели нашего лагеря."
     "Кирилл Дмитриевич нашёл нам два хороших места, где не сильно мешают волны и при этом много камней и песка - главных строительных материалов."
+    hide dima_golii
+    hide Kirill_defolt at my_left
     "Странно конечно, заниматься этим в таком возрасте, но, в конце концов, кто мешает нам наслаждаться последними беззаботными годами?"
     "*Особенно мне, я вообще не отсюда."
     "Забор и некоторые здания уже были готовы, а море вырыто здоровенное."
+    show dima_golii at my_left
     dz  "Что-то у нас вода слишком низко в замке,  надо поднять."
     "*Да откуда у него эта мания - поднимать воду."
     d "Нет, лучше вон площадку разровняй, или палочку найди и сделай стены красивыми, вырежи что-нибудь на них."
     dz  "Ну, я уровень воды быстренько подниму, потом всё остальное сделаю."
+    show Kirill_defolt at my_right
     k  "Да пусть поднимет уже, что уж, раз хочет."
     d "Дима должен помогать, а не всё ломать."
     dz  "Ну я помогаю."
@@ -2340,6 +2336,8 @@ label GoDiner:
     "Дима убежал."
     stop music
     hide dima_golii
+    hide Kirill_defolt at my_right
+    show Kirill_defolt
     "*С позором - подумал я."
     show Dach_Def at my_right
     da "А что происходит?"
@@ -2351,6 +2349,7 @@ label GoDiner:
     v  "Данил всегда в детском саду."
     hide Leva_defolt at my_left
     hide Dach_Def at my_right
+    hide Kirill_defolt
     "*Вот это нож в спину от родного брата..."
     menu:
         "Позвать":
@@ -4218,7 +4217,7 @@ label GoodEnd:
     "Или что-то типо того."
     "Спрашивать о правильности моей теории я не стал, так как тело уже совсем не слушалось, глаза сами собой закрывались."
     #Черный экран
-    scene bg black
+    scene bg black with dissolve2
     v "А откуда вы это знаете?"
     dz "Да он из прошлого! Я же говорил! "
     dz "У него есть машина времени! А ещё он ставит эксперименты над нами!"
@@ -4229,7 +4228,7 @@ label GoodEnd:
     "…"
     #Снова появляется та же картинка комнаты, что и из пролога.
     #Дневник
-    scene Prolog_0_Dan_Writ
+    scene Prolog_0_Dan_Writ with dissolve2
     play music music_list["lets_be_friends"]
     "Здравствуй, дневник. Снова мы встретились с тобой в этот день. 2028 год. "
     "Ровно 3 года и семь дней назад я точно так же рассказывал тебе о своей жизни. В это же время и в этом же месте."
@@ -4277,7 +4276,8 @@ label GoodEnd:
     "И этот выбор был самым удачным из всех возможных."
     stop music
     play music music_list["everlasting_summer"]
-    scene Prolog_0_Dan_Writ
+    scene Prolog_0_Dan_Writ with dissolve2
+    scene black with dissolve2
     #Снова Данил с дневником, экран снова чернеет. Потом экран светлеет, включается музыка из бл и продолжается слайдшоу с нашими фотокарточками
     "…"
     #Окошко с текстом 
@@ -4299,35 +4299,35 @@ label BedEnd:
     "Они открывали рты, но звуков я не слышал."
     "Через минуту и они начали по одному исчезать."
     #1488 спрайт Миша+ "
-    show Misha_defolt
+    show Misha_defolt 
     "Миша"
-    hide Misha_defolt
+    hide Misha_defolt with dissolve2
     #1488 спрайт Миша -
     #1488 спрайт Даша +
     show Dach_Def 
     "Даша"
     #1488 спрайт Даша -
-    hide Dach_Def
+    hide Dach_Def with dissolve2
     #1488 спрайт Лёва + 
     show Leva_defolt
     "Лёва"
     #1488 спрайт Лёва -
-    hide Leva_defolt
+    hide Leva_defolt with dissolve2
     #1488 спрайт Дима + 
     show Dima_defolt
     "Дима"
     #1488 спрайт Дима -
-    hide Dima_defolt
+    hide Dima_defolt with dissolve2
     #1488 спрайт Кирилл + 
     show Kirill_defolt
     "Кирилл Дмитриевич"
-    hide Kirill_defolt
+    hide Kirill_defolt with dissolve2
     #1488 спрайт Кирилл -
     #1488 спрайт Саша + 
     show Sasha_defolt
     "Саша"
     #1488 спрайт Саша -
-    hide Sasha_defolt
+    hide Sasha_defolt with dissolve2
     "Все они исчезали."
     v " Что это…"
     "Я повернул голову в сторону брата."
@@ -4338,7 +4338,7 @@ label BedEnd:
     "*Один"
     "Мы оба провалились в сон…."
     #черный экран
-    scene bg black
+    scene bg black with dissolve2
     "…"
     #Картинка потолка
     scene ceiling with dissolve2
@@ -4347,7 +4347,7 @@ label BedEnd:
     "*Неужели всё… Закончилось?"
     "*Нет, нет, нет…"
     #черный экран
-    scene bg black
+    scene bg black with dissolve
     "…"
     #Картинка кухни
     scene Prolog_Window_0 with dissolve2
@@ -4366,13 +4366,17 @@ label BedEnd:
     "Я виновато опустил глаза."
     v "Пойдем назад спать."
     "Мы вернулись в свои кровати."
+    show blink
+     show unblink 
+     show blinking
+    scene black with dissolve2
     "…"
     #Картинка комнаты
-    scene Prolog_0_Dan_Sit
+    scene Komnata_d with dissolve2
     "*И всё-таки, что-то тут не так…"
     "Я закрыл глаза."
     #Картинка “белый шум”
-    show prologue_dream
+    show prologue_dream 
     "В голове возникали размытые образы, картинки, при виде которых сердце начинало биться чаще."
     #Размытые картинки лагеря из дефолтного бл, по щелчку на каждый, штук 5 можно вставить ( площадь, столовая, ворота и тд)
     hide prologue_dream
@@ -4394,9 +4398,10 @@ label BedEnd:
     "*Наверное, дурной сон…"
     "…"
     "*Но разве может дурной сон вызывать столько воспоминаний?..."
+    scene black with dissolve2
     "…"
     #Дневник, как в прологе  
-    scene Prolog_0_Dan_Writ
+    scene Prolog_0_Dan_Writ with dissolve2
     play music music_list["i_dont_blame_you"]
     "Прошло уже много лет. Неважно сколько."
     "Если измерять по количеству событий в моей жизни, едва ли наберется неделя."
@@ -4430,6 +4435,7 @@ label BedEnd:
     "Ворота в пионерлагерь. "
     #Картинка ворот под эффектом затемнения и белого шума
     show prologue_dream
+    scene The_gates_of_the_camp 
     "*Кинатеатр - гласит надпись над ними."
     "Я пытаюсь подойти и толкнуть их."
     "Безуспешно."
@@ -4441,6 +4447,7 @@ label BedEnd:
     "*Да, я"
     voice "Нет, это не он."
     "*Опять не “Я”..."
+    hide The_gates_of_the_camp with dissolve2
     hide prologue_dream
     #Картинка белого шума
     "И сон заканчивается."
@@ -4463,12 +4470,12 @@ label BedEnd:
     "За возможность дойти до этой мысли я и благодарен тебе…"
     stop music
     #Картинка потолка
-    scene ceiling
+    scene ceiling with dissolve2
     "А теперь…"
     "Спать…."
     #Черный экран, музыка из бл
     play music music_list["everlasting_summer"]
-    scene bg black
+    scene bg black with dissolve2
     return
 label SoSoEnd:
     "Глаза начали закрываться сами собой, а я, как послушный человек, поддался желанию поспать."
@@ -4478,21 +4485,21 @@ label SoSoEnd:
     "*Жалко, что мы всё-таки не так сильно подружились за это время…"
     "С этой мыслью я провалился в сон."
     #Черный экран
-    scene bg black
+    scene bg black with dissolve2
     "…"
     play music music_list["into_the_unknown"]
     "Меня разбудил Ваня."
     "Он тряс меня и что-то говорил без умолку."
     v "Вставай, Данил, мы вернулись."
     #Замыленная картинка города 
-    scene Gorod_blurred
+    scene Gorod_blurred with dissolve2
     "Я еле как открыл глаза и усиленно пытался понять, что же мне так сильно хочет сказать и показать Ваня."
     "*Странно, я даже не хочу послать его куда подальше… А ведь ещё неделю назад я бы это с радостью сделал.."
     "Протерев заспанные глаза, я наконец повернулся к брату."
     d "Куда вернулись? В лагерь?"
     v "В окно посмотри."
     #Картинка города
-    scene Gorod
+    scene Gorod with dissolve2
     "Повернув голову, я обомлел."
     "*Мы… Опять в нашем мире?"
     "За окном пестрели рекламные баннеры Теле2, Гриля №1 и всего прочего, что было в этом городе потребления."
@@ -4514,9 +4521,10 @@ label SoSoEnd:
     "Не переться же через весь город в такой форме. Даже если добираться на общественном транспорте, всё равно лучше как-нибудь попытаться объяснить все происходящее одному таксисту, чем стыдится перед толпами людей."
     "…"
     "…"
+    scene black with dissolve2
+    scene Komnata_d with dissolve2
     "…"
     #Картинка квартиры
-    scene Gorod
     d "Ну вот, хотя бы мы дома."
     stop music
     v "Дааа…"
@@ -4546,7 +4554,7 @@ label SoSoEnd:
     "…" 
     #Картинка размытого потолка, потом окно как в прологе
     scene ceiling with dissolve2
-    scene Prolog_Window_1 with dissolve2
+    window show
     "Уснул я не сразу."
     "Слишком много событий надо было переварить в голове."
     play music music_list["everlasting_summer"]
@@ -4572,8 +4580,9 @@ label SoSoEnd:
     "Если уж такие невероятные вещи, как перенос во времени и в пространстве возможны, то почему не может быть резких перемен в этой жизни в лучшую сторону?"
     "*Конечно такое может быть! Главное - не терять шанс."
     "*Просто не терять шанс…"
+    window hide
     #Черный экран
-    scene bg black
+    scene bg black with dissolve2
     "…"
     return
 
