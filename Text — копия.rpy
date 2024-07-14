@@ -163,11 +163,11 @@ init:
     transform Q00:
         pos(0,0)
     transform trisss:
-        zoom 1.05anchor (48,27)
-        ease 0.20pos (0, 0)
-        ease 0.20pos (25,25)
-        ease 0.20pos (0, 0)
-        ease 0.20pos (-25,25)
+        zoom 1.05 anchor (48,27)
+        ease 0.20 pos (0, 0)
+        ease 0.20 pos (25,25)
+        ease 0.20 pos (0, 0)
+        ease 0.20 pos (-25,25)
         repeat(5)
 label Texr_Prolog_0_Test_for_snow: 
     $ persistent.sprite_time = "night"
