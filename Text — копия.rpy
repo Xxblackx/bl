@@ -136,10 +136,13 @@ init:
     $ campfire_drown = "mods/Mod/sounds/campfire_drown.mp3"
     $ noch = "mods/Mod/sounds/YUrijj_SHatunov_-_Sedaya_noch_50310007.mp3"
     $ zar = "mods/Mod/sounds/YAroslav_Stikharjov_i_detskijj_khor_MJEC_-_Zaryadka_Solnyshko_luchistoe_muz_i_sl_A_Stikharjovojj_64892894.mp3"
-    $ vse = "mods/Mod/sounds/vse.mp3"
+    $ vse = "mods/Mod/sounds/Samocvety-VseChtoVZHizniEstUMenia.mp3"
     $ devocka = "mods/Mod/sounds/devochka.mp3"
     $ rodina = "mods/Mod/sounds/rodina.mp3"
-
+    $ kiskis = "mods/Mod/sounds/kiskis.mp3"
+    $ zombi = "mods/Mod/sounds/serega-pirat-qeqoqeq-zombi-apokalipsis-mp3.mp3"
+    $ letov = "mods/Mod/sounds/Egor_Letov_Vse_idet_po_planu.mp3"
+    $ flyme = "mods/Mod/sounds/fly me to the moon.mp3"
 
 
 
@@ -186,7 +189,7 @@ label Text_Prolog_1_The_text_is_the_beginning:
     $ night_time()
     scene prolog_2
     $ set_mode_nvl()
-    play music music_list["a_promise_from_distant_days"]
+    play music music_list["a_promise_from_distant_days"] loop
     "2028 год"
     "Вот уже третий год я учусь в этом заведении... " 
     "Сессии, сдачи экзаменов - скукотища."
@@ -230,7 +233,7 @@ label day_1:
     scene The_car_is_blurry with dissolve2
     ""
     scene The_car with dissolve2
-    play music music_list["door_to_nightmare"]
+    play music music_list["door_to_nightmare"] loop
 
     "*Что случилось?"
     "*Где я?"
@@ -241,7 +244,6 @@ label day_1:
     "~Я запаниковал ещё сильнее, однако то ли организм не справился со стрессом, то ли на нас чем-то воздействовали, но страх внезапно сменился невероятной сонливостью. Посмотрев на Ваню, я заметил что и его клонит в сон. Лицо брата - последнее что я увидел перед тем как погрузиться во тьму."
     scene black with dissolve2
     scene The_car_is_at_the_camp with dissolve
-    stop music 
 
     "~Очнулись мы в той же машине, однако теперь транспорт остановился, поэтому я открыл дверь и выскочил из автомобиля. Ваня последовал за мной."
     scene The_gates_of_the_camp with dissolve2 
@@ -265,6 +267,8 @@ label day_1:
     d "А ты не умничай, делать-то что…"
     "Мы услышали звук открывающихся ворот и обернулись."
     play sound sfx_open_metal_hatch
+    stop music
+    play ambience ambience_camp_entrance_day_people loop
     "Из них вышла девочка, лет 17 на вид."
     show Dach_Def
     dev"Ой, это вы. Мы вас целый день ждем, меня Даша зовут, а вас?"
@@ -281,11 +285,12 @@ label day_1:
     hide Dach_Def
     "Мы неподвижно стояли, поэтому пионерка взяла нас за руки и повела за собой, что-то тараторя про лагерь."
     "Отказать, видимо, мы не могли, поэтому не стали сопротивляться и пошли за ней."
+    stop ambience
     scene bg ext_houses_day with dissolve2
+    play ambience ambience_camp_center_day loop
     "За воротами перед нами предстал настоящий пионерский лагерь. С дорожками, как в советских фильмах, плакатами, развешанными повсюду, с яркими красными флажками, а также с ребятами от 8 до 17 лет в пионерской форме."
     show Dach_Def
     da "Так, смотрите, сейчас прямо, потом налево, налево, вдоль домиков…"
-    play ambience ambience_camp_center_day
     "~Лично я ее дальше не слушал. Меня увлекло то, насколько похоже это все на реальность. Звуки были до боли знакомые - щебетание птиц не городское, а настоящее, дикое. Шум деревьев расслаблял и успокаивал, навеевая какие-то смутные воспоминания о детсве и деревне."
     da "А мне пора, давайте сами. Если что - я на площади, обращайтесь"
     hide Dach_Def
@@ -301,7 +306,7 @@ label day_1:
     "Что лучше - я не знаю. Конечно, я мечтал в один момент проснуться знаменитостью, но никак не в роли болвана-подопытного."
     scene Dima_na_sceite
     stop ambience
-    play music music_list["always_ready"]
+    play music music_list["always_ready"] loop
     "Мои размышления прервал мальчик лет 16, резко вылетевший на дорожку."
     "Своей одеждой он больше напоминал подростка из американского фильма."
     "К этому всему, он ещё и был на скейтборде."
@@ -315,12 +320,14 @@ label day_1:
     scene Lager_utro with dissolve
     "Мы пошли дальше."
     stop music
+    play ambience ambience_camp_center_day loop
     "Я постарался отключить мозг хотя бы на какое-то время чтобы не думать о происходящем и просто шёл, наслаждаясь чистым лесным воздухом. Погода была настолько чудесной, что в мыслях даже мелькнула благодарность тому, кто меня сюда засунул."
     scene Banua with dissolve
     "Спустя несколько минут мы подошли к деревянному домику на окраине лагеря."
     v "Сюда что ли?"
     d "Hе знаю, на дом вожатого не похоже, но вроде правильно шли."
     "Я подошел и постучал в дверь, однако никто не открыл."
+    stop ambience
     play sound sfx_open_door_1
     "Тогда я дернул за ручку и мы вошли."
     scene Banua_vnutri with dissolve
@@ -368,16 +375,17 @@ label day_1:
     #Пустая сцена, картинка меняется на столовую
     scene bg ext_dining_hall_away_sunset with dissolve
     stop ambience
-    play ambience ambience_medium_crowd_outdoors
+    play ambience ambience_medium_crowd_outdoors loop
     "Мы дошли до столовой, возле которой уже выстроилась очередь из пионеров."
     "Кирилл Дмитриевич протолкнул вперёд очереди нас и Дашу, воспользовавшись своим правом вожатого. "
     stop ambience
     scene Stolovaya_ludi with dissolve
-    play ambience ambience_dining_hall_full
+    play ambience ambience_dining_hall_full loop
     "Пахло картошкой и котлетами. На столах уже стояли стаканы с чаем и коробочки с вилками и ложками."
     "Вся столовая была увешана советскими плакатами."
     "*Хорошо же всё-таки подобрали антураж - подумал я."
     "Ваня взял поднос и подал мне такой же."
+    play sound sfx_stomach_growl    
     "Когда подошла моя очередь, живот громко заурчал. Повариха сочувствующе улыбнулась и добавила мне ещё одну котлету. Я смущённо поблагодарил её и поспешил за столик к Ване."
     "Основная часть пионеров ещё не зашла, поэтому народу было не так много. Даша с Кириллом Дмитриевичем куда-то делись, поэтому за столиком мы сидели вдвоём."
     v"Откуда у тебя ещё одна котлета?"
@@ -438,7 +446,7 @@ label day_1:
     #Сначала пропадает Даша, потом появляется сцена “домик внутри”
     scene House_in_at_night with dissolve2
     play sound sfx_open_door_1
-    play ambience ambience_int_cabin_night
+    play ambience ambience_int_cabin_night loop
     "Мы зашли внутрь, на пружинных советских кроватях лежало наше постельное белье, одеяло и подушки. В домике стояли две тумбочки и столик с табуретками, выглядело мило."
     play sound sfx_door_squeak_light
     d "А мне тут нравится даже."
@@ -447,6 +455,7 @@ label day_1:
     d "В общем, мне тут нравится."
     v "Меня, честно говоря, жутко клонит в сон. Давай завтра разберемся…"
     d "Утро вечера мудренее, спокойной ночи."
+    play sound sfx_shurik_snore
     "Ваня ничего не ответил и уже сопел."
     "Я продолжил думать о произошедшем. Слишком многое поменялось в один момент."
     "Последнее что я помню - свою мысль: “Вот бы что-нибудь изменить”..."
@@ -465,6 +474,7 @@ label day_1:
     $ set_mode_adv()
     scene bg ext_road_night2 at trisss
     play sound sfx_slavya_run loop
+    play music music_list["drown"] loop
     "Я бегу вперед. Лёгкие и сердце уже не выдерживают."
     "Я делаю ещё один рывок - вот бы пришло второе дыхание, вот бы я ещё немного пробежал..."
     "Но силы кончаются, кончаются даже слишком быстро. Вместо них начали приходить глупые вопросы, которые не посещали меня уже тысячу лет."
@@ -472,6 +482,7 @@ label day_1:
     d"Это же вообще кольцевая дорога, тут нет конца и начала… Тебе надо разорвать…"
     "Договорить Данил не успел. Точнее, докричать. Честно сказать, я вообще не понял, откуда появился голос Данила, но это уже было не важно. Я полетел вниз."
     "Асфальт буквально испарился подо мной. Я падал в бездну."
+    stop sound
     stop music
 label day_2:
     $ backdrop = "days"
@@ -481,7 +492,7 @@ label day_2:
     #Картинка и надпись  игра от лица Вани  на черном фоне
     scene House_in_at_day with dissolve
     "ВАНИНО УТРО"
-    play ambience ambience_int_cabin_day
+    play ambience ambience_int_cabin_day loop
     "Я проснулся рано… Данил ещё спал."
     "*Пойду, наверное, пройдусь - подумал я. "
     "На телефоне было 5 часов 41 минута, а время, как я заметил вчера, тут совпадало с нашим прежним." 
@@ -490,7 +501,7 @@ label day_2:
     stop ambience
     play sound sfx_open_door_1
     scene bg ext_houses_day with dissolve
-    play ambience ambience_camp_center_day
+    play ambience ambience_camp_center_day loop
     "В первые минуты моей прогулки на улице никого не было. Очевидно, все пионеры спали."
     "Только птицы чирикали и перелетали с ветки на ветку."
     "А я, тем временем, наслаждался свежим росистым воздухом, которого не найти на шумных и больших улицах Петербурга. "
@@ -554,7 +565,7 @@ label day_2:
     ""
     stop ambience
     scene House_in_at_day with dissolve2
-    play ambience ambience_int_cabin_day
+    play ambience ambience_int_cabin_day loop
     "Лучи солнца уже проникли в мою комнату и начали бить мне в лицо. Это и послужило причиной для моего пробуждения. Я ещё немного полежал в кровати, потом решил встать. "
     "Вани не было. Наверное, пошел умываться. Не мог же он пропасть."
     "Я нашел свой банный набор и начал одеваться."
@@ -743,8 +754,8 @@ label Proverc_music_club:
     d "Хорошая такая группа."
     v "А представь как хорошо бы было, если бы ты не помолодел, а стал рок-девочкой?"
     d "Всегда мечтал."
-    stop ambience
     "Мы зашли внутрь кружка."
+    stop ambience
     play sound sfx_open_door_1
     scene bg int_musclub_day with dissolve2
     "Внутри и правда был только Кирилл Дмитриевич, который что-то перебирал то на гитаре, то на пианино, то на барабанах."
@@ -981,7 +992,7 @@ label Prodolg_day_2:
             "Мы забежали на склады, Дима шмыгнул куда-то между заборами и скрылся из виду."
             "Я к тому времени изрядно устал, поэтому я решил прекратить погоню и облокотился на здание склада, чтобы отдохнуть."
             "Через некоторое время сюда подошел Ваня."
-            stop music 
+            stop music
             play ambience ambience_day_countryside_ambience
             v "Не поймал?"
             "Спросил он с ироничной ухмылкой."
@@ -1026,6 +1037,7 @@ label Prodolg_day_2:
     "Да и вообще, мне как будто бы уже снилось это место."
     v "Зайдем внутрь?"
     d "Давай."
+    play sound sfx_open_door_squeak_2
     "Дряхлая дверь скрипнула и легко открылась."
     scene bg int_old_building_night
     "Внутри вид был совершенно такой, каким мы его себе представляли. Разбросанные сломанные в большинстве своём игрушки, обвалившийся потолок, сорванные обои."
@@ -1077,7 +1089,7 @@ label Prodolg_day_2:
     "Хотя Ваня и светил фонариком, видимо, наша невнимательность победила. "
     "Не успели мы пройти и пяти метров, как упали вдвоем в яму."
     scene bg int_mine
-    #play sound sfx_jump_into_hole
+    play sound sfx_body_bump
     "Летели мы недолго, но падать было больно."
     "Ваня поднял телефон, на экране которого появилось несколько трещин, посветил на меня, а потом вверх."
     d "Да, выбираться, конечно, будет тяжело."
@@ -1203,6 +1215,7 @@ label Game_dota_2:
             d "Наверное…"
             "И правда, весь лагерь управился с едой достаточно быстро."
             stop ambience
+            play ambience ambience_camp_center_evening
             scene bg ext_dining_hall_near_sunset
             "Все выходили на крыльцо и ждали объявление начала игры."
             "Кирилл Дмитриевич вышел на крыльцо и торжественно произнёс."
@@ -1225,6 +1238,7 @@ label Anons_dota_2:
             k "Я понимаю, насколько это грандиозное события для лагеря, но веести себя надо всё-таки культурно."
             k "Помните что турнир по Доте – лишь одно из жизненных испытаний, которое вам предстоит пройти. Все правила составлены на основе вашего киберспортивного опыта. Поэтому каждый из вас, кто хоть раз держал мышку в руках, может победить в игре."
             k "Теперь перейдем к правилам… А хотя, сами разберётесь, обучение никогда никто не проходит."
+            stop ambience
             hide Kirill_defolt
             
             jump card_game
@@ -1282,7 +1296,7 @@ label Day_3:
     #Черный экран, потом картинка комнаты Данила под эффектом затемнения и белого шума.
     scene bg black with dissolve2
     "Мне снился сон.. "
-    play sound whitt
+    play sound whitt loop
     "Точнее сказать, мне снилась моя реальная жизнь."
     scene Prolog_0_Dan_Writ
     "Мой стол, моя комната, моя лампа и синее свечение монитора..."
@@ -1304,6 +1318,8 @@ label Day_3:
     show square_blur with dissolve2
 
     show road_blur with dissolve2
+    
+    stop sound
 
     #Звук обрушения, картинка потолка замыленная
     play sound sfx_bones_breaking
@@ -1355,8 +1371,6 @@ label Day_3:
     play ambience ambience_medium_crowd_indoors_1
     "Несколько десятков пионеров уже стояли на ней. Кто-то подходил, кто-то уже зевал, кто-то разговаривал."
     "Тут в центр вышел Дима."
-    stop ambience
-    play ambience ambience_medium_crowd_outdoors
     show Dima_defolt at my_right
     d"Все пришли? Отлично!!!"
     "Он быстро сбегал к лавочке и откуда-то достал что-то типо колонки… "
@@ -1386,7 +1400,7 @@ label Day_3:
     "*Легендарная советская школа."
     "Продолжалась борьба не очень долго, как раз под конец песни к борцам подошли вожатые из других групп."
     stop music
-    play ambience ambience_medium_crowd_outdoors
+    play ambience ambience_medium_crowd_indoors_1
     scene bg ext_square_day with dissolve2
     show mt pioneer rage close
     voice "Что у вас тут случилось?" 
@@ -1495,7 +1509,6 @@ label Day_3:
     "Санек, Даша, Лёва, Кирилл Дмитриевич и, конечно же, Дима - все были здесь. "
     "Не пришёл только Миша."
     show Dima_defolt
-    stop ambience
     dz "Дорогие друзья! Всех приветствую в моём клубе геополитики."
     "Дима начал очень бодро, ему не хватало только встать на стул. Тогда бы он казался настоящим великим оратором, никакой Черчилль или Муссолини не сравнились бы с ним. Разве что Ленин мог составить конкуренцию."
     dz "Сейчас я вам объясню правила игры."
@@ -1504,6 +1517,7 @@ label Day_3:
     "Что мы можем мы с Ваней уже не слушали. Мы рассматривали карту и думали, почему это привлекло так много людей."
     l "Мы, пожалуй, откажемся. Лучше стенгазету нарисуем про это событие."
     "Дима кивнул головой."
+    stop ambience
     hide Dima_defolt
     play ambience ambience_library_day
     ""
@@ -1601,9 +1615,9 @@ label Day_3:
     "Подключением проводов занимался Миша, а гирлянды развешивал Лёва."
     "Диме не поручили ничего, потому что, как мы поняли, в прошлый раз свое поручение он выполнил весьма своеобразно."
     "Как именно - история умалчивает."
-    stop ambience
     scene bg ext_square_night with dissolve2
     scene mizic with dissolve2
+    stop ambience
     play ambience ambience_music_club_night
     "Ключ от музыкального клуба нам дали в личное распоряжение." 
     "Ваня открыл дверь и сам вынес колонки."
@@ -1624,20 +1638,20 @@ label Day_3:
     play sound vse
     "Началось всё с достаточно безобидных песен. Советская классика."
     "Но вот в середине началось уже что-то странное."
-    stop sound fadeout 2
-    play sound devocka fadein 2
+    stop sound
+    play sound devocka
     "Играла и “Девочка с каре”, хотя её ещё не должно было существовать."
     "*Да и вообще, пионерского в этой песне мало.."
-    stop sound fadeout 2
-    play sound rodina fadein 2
+    stop sound
+    play sound kiskis
     "И ещё много других сомнительных песен."
     "Однако чего-то не хватало."
     "Или кого-то."
-    stop sound fadeout 2
     v "Лёва разговаривает с диджеем, Даша тут около ходит, Саша смеется в компании каких-то фриков.."
     d "Да, а Димы не наблюдается, я тоже заметил."
     "Но тут случилось то, что перевернуло эту дискотеку."
-    play sound noch fadein 2
+    stop sound
+    play sound noch
     "Началась “Седая ночь”."
     "Только прозвучали первые ноты этой песни, как вдруг в центре площади появился Дима."
     "И не просто появился, он начал прыгать, кричать и подпевать."
@@ -1680,7 +1694,10 @@ label Day_3:
             voice "Господи, Звездаков прыгает… Первый раз такое вижу…"
             "Все в толпе рассмеялись."
     stop ambience
+    play sound zombi
     "Проиграла ещё одна песня."
+    stop sound
+    play ambience ambience_camp_center_night loop
     voice "А на этом наша дискотека заканчивается. С вами был Легендарный ЕГОР МАКОТА! До новых встреч!"
     "Наш вожатый взял микрофон."
     show Kirill_defolt
@@ -1741,6 +1758,8 @@ label Day_3:
     v "Не поспоришь."
     # Картинка меняется на “домик внутри”
     scene House_in_at_night with dissolve
+    stop ambience
+    play ambience ambience_int_cabin_night loop
     "Мы зашли внутрь."
     "Каждый быстро повесил свои вещи и лёг на кровать."
     v "Я так понимаю, завтра нас тоже чем-то займут?"
@@ -1772,12 +1791,14 @@ label Day_3:
     "Я уже был почти убежден в том, что мне кто-то дал второй шанс на жизнь, что моя реальность теперь тут."
     "С этой мыслью я и провалился в сон."
     ""
+    stop ambience
 label Day4:
     $ backdrop = "days"
     $ new_chapter(4, translation_new["day1"])
     $ day_time()
     scene bg black
-    play music music_list["my_daily_life"]
+    play music music_list["my_daily_life"] loop
+    play ambience ambience_int_cabin_day loop
     "ВАНИНО УТРО"
     # Размытый потолок ( blur) меняется на нормальный
     scene ceiling_day with dissolve2
@@ -1788,13 +1809,15 @@ label Day4:
     "Данил ещё спал."
     "*Наверное, пойду пройдусь до умывальников, а там может ещё куда-нибудь зайду."
     "С этой мыслью, я поднялся с кровати, оделся и вышел из дома, стараясь не разбудить Данила."
+    play sound sfx_open_door_1
+    stop ambience
     #Сцена меняется на “домик снаружи” 
     scene bg ext_house_of_un_day with dissolve2
+    play ambience ambience_camp_center_day loop
     "Несмотря на раннее утро, на улице было уже тепло, немного дул ветер."
     "Я направился в сторону умывальников."
     "*И всё-таки непонятно, как уйти из этого лагеря."
     "*Хотя, наверное, действительно, после послезавтра узнаем, всё-таки, приехали мы странно, значит и уедем как-то странно."
-    stop music
     "На этом мои размышления об этом мире закончились, да и к умывальникам я почти подошёл. "
     scene bg ext_washstand_day
     "Никого рядом не было, поэтому я приблизился к одному из них."
@@ -1835,7 +1858,9 @@ label Day4:
     v "Ладно."
     hide Leva_defolt
     "На этом мы закончили разговор, а я направился к домику."
+    stop ambience
     # Игра от лица Данила
+    play ambience ambience_int_cabin_day loop
     scene House_in_at_day with dissolve
     "УТРО ДАНИЛА"
     "Я проснулся достаточно рано, подъём ещё не прозвучал, судя по настольным часам."
@@ -1848,6 +1873,7 @@ label Day4:
     "Сперва я взял один носок и начал медленно натягивать его на ногу."
     "Ещё несколько минут я просидел в одном носке."
     "Когда я потянулся за вторым, в комнату зашел Ваня."
+    play sound sfx_open_door_1
     d "Доброе утро - сказал я, держа один носок в руке."
     v "Доброе, доброе."
     ""
@@ -1856,6 +1882,10 @@ label Day4:
     d "Не усни, соня."
     "Ваня ничего не ответил на мою колкость, только покрутил головой."
     "Собственно, поняв, что тут мне делать нечего, я взял рыльно-мыльные принадлежности и направился к умывальникам."
+    play sound sfx_open_door_1
+    stop ambience
+    scene bg ext_house_of_un_day with dissolve2
+    play ambience ambience_camp_center_day loop
     ""
     "По пути не происходило ничего особенно интересного."
     "Я просто шёл и думал об этом мире."
@@ -1882,14 +1912,15 @@ label Day4:
     scene bg ext_washstand_day
     "В отличии от дороги, по которой я шёл, тут интересности сразу бросились в глаза."
     "Дима зачем-то набирал воду в ведра."
+    stop music
     show Dima_defolt
-    play music music_list["i_want_to_play"]
+    play music music_list["i_want_to_play"] loop
     d "Привет, Дима."
     dz "Привет, Данил."
     d "А что ты делаешь?"
     "Спросил я его, выражая искренний интерес к происходящему."
     dz  "Да так, Кирилл Дмитрич сказал, что у нас “море слишком низкое”, вот я и решил его поднять, так сказать, искусственным методом."
-    d "Ведрами?"
+    d "Ведром?"
     dz  "Ведрами, двумя."
     "*Удачи тебе в твоих начинаниях."
     stop music
@@ -1897,11 +1928,14 @@ label Day4:
     "Я не стал дальше донимать парня вопросами, дождался своей очереди и быстро умылся."
     play sound sfx_dinner_horn_processed
     "Как только я закончил, уже прозвенел звонок на завтрак. "
+    play sound sfx_open_door_1
     "Я рванул в сторону домика, быстро кинул вещи. "
     scene bg ext_house_of_un_day with dissolve2 
     # Сцена меняется на “домик снаружи”
     "Ваня уже пошёл на завтрак, видимо, не дождавшись меня, поэтому и я устремился в сторону столовой."
+    stop ambience
     scene bg int_dining_hall_people_day
+    play ambience ambience_dining_hall_full loop
     "Внутри столовой я и отыскал своего брата."
     "Он занял мне место, я быстро взял свою еду и сел с ним за столик."
     ""
@@ -1943,13 +1977,16 @@ label Day4:
     hide Kirill_defolt
     "Интересное распределение задач."
     "Саша не очень был похож на мастера сантехники, ну да ладно."
+    stop ambience
     scene bg ext_dining_hall_near_day
+    play ambience ambience_camp_center_day loop
     "Все разбрелись кто куда, а я пошел к клубу “Варфрейма”."
-
     # Игра от Ваниного лица
     "В ЭТО ВРЕМЯ У ВАНИ:"
     scene bg ext_library_day with dissolve2
+    stop ambience
     scene bg int_library_day with dissolve2
+    play ambience ambience_library_day loop
     "Мы с Лёвой зашли в библиотеку."
     "Оказывается, в глуби клуба геополитики была ещё одна дверь - в клуб стенгазетистов."
     "*Или как их называют..."
@@ -1971,8 +2008,9 @@ label Day4:
     "Мы принялись рисовать."
     play sound sfx_wood_friction
     # Звук часов, комната стенгазетистов без людей
-    play sound clock
+    play sound clock loop
     ""
+    stop sound
     show Leva_defolt
     l "А чем ты вообще увлекаешься?"
     "*Если так подумать, то сразу сложно сказать, чем я увлекаюсь. Навряд ли в их мире есть что-то типо Manor Lords или Arma..."
@@ -2019,11 +2057,14 @@ label Day4:
     hide Leva_defolt at my_left
     "И мы продолжили работать."
     ""
+    stop ambience
+    play ambience ambience_clubs_inside_day loop
     scene bg int_clubs_male_day with dissolve2
     "В КЛУБЕ Warframe"
     # Игра от лица Данила
     # Картинка меняется на “клубы внутри”
     "Пока Ваня, видимо, рисовал что-то, я помогал Мише в его каморке."
+    stop ambience
     play music music_list["heather"]
     "Работа у меня не требовала особой умственной нагрузки, поэтому я рассматривал разные скрепочки, плакаты и прочую лабуду."
     show Misha_defolt
@@ -2058,9 +2099,12 @@ label Day4:
     hide Misha_defolt
     "После этих слов он куда-то ушёл."
     stop music
+    play sound sfx_radio_tune loop
     "Я решил быть порядочным пионером и посидеть понастраивать радио.."
     "Через некоторое время я действительно поймал какую-то волну."
     d "Ух ты! Радиодача!"
+    stop sound
+    play sound letov
     d "Прикольно."
     "Я решил немного послушать музыку, как тут нас позвали на обед."
     play sound sfx_dinner_horn_processed
@@ -2074,6 +2118,7 @@ label ViborNaGorem:
             jump ViborNaGorem
         "Пойти на обед":
             "Я решил не засиживаться и пойти на обед."
+            stop sound
             jump GoDiner
         
 
@@ -2089,11 +2134,16 @@ label Gorem:
     "Эх, ну ещё одну песню!"
     "..."
     ""
+    stop sound
+    stop ambience
     scene black with dissolve2
+    play sound sfx_computer_screen_static loop
     "*Что-то мне поплохело... Неужели я отправляюсь назад..."
     "Нет, нет, нет..."
     #Экран становится полностью черным
+    stop sound
     scene Prolog_0_Dan_Writ
+    play music music_list["feeling_good"] loop
     "Я и правда проснулся в своем мире."
     play sound sfx_scary_sting
     "*И что, этого всего не было?"
@@ -2132,9 +2182,10 @@ label Gorem:
     "Сжав кулаки - а вдруг драка? Я так-то на бокс ходил - я открыл дверь."
     "..."
     #Сцена меняется на “Девочки на желтом фоне”
+    stop music
     scene Gorem with dissolve2
+    play sound flyme loop
     "Передо мной стояли 3 девочки. Очень реально нереальные девочки."
-    play music music_list["lets_be_friends"]
     scene Komnata_d with dissolve
     show Ayanami_defolt at my_left
     voiceRei  "Ну привет, Данил."
@@ -2193,15 +2244,17 @@ label Gorem:
     "Через сутки я уже понял, что не хочу уходить от этих девочек, да и они не сильно хотят уходить от меня."
     "Впервые в жизни после раннего детства я действительно почувствовал себя кому-то нужным."
     "А что будет дальше - без разницы, ведь теперь я могу быть счастливым."
+    stop sound
+    play music music_list["everlasting_summer"]
+    scene bg black
+    "У каждой истории есть начало и конец. У каждой истории есть своя канва, синопсис, содержание, ключевые моменты, прологи и эпилоги. И нет такой книги, в которой при каждом новом прочтении не открывались бы вещи, на которые раньше не обращал внимания..."
     stop music
-    #Экран темнеет
-    #Музыка из бл
-    #титры
-    ""
     return
 label GoDiner:
     #Если Данил всё-таки идет на обед в любое время
     "Я всё-таки решил пойти на обед, радио я всегда успею послушать."
+    stop sound
+    play ambience ambience_clubs_inside_day loop
     "Потихоньку достав вилку из розетки и аккуратно отодвинув радио подальше от края, я вышел из клубов и направился в сторону столовой. "
     #Картинка “ клубы снаружи”
     "Через некоторое время я поравнялся с Мишей."
@@ -2210,16 +2263,23 @@ label GoDiner:
     mish  "Ну молодец, что сказать."
     "Миша выглядел недовольным, а злить его - себе дороже, поэтому я решил этого не делать. "
     hide Misha_defolt
+    stop ambience
+    play ambience ambience_camp_center_day loop
+    play sound sfx_open_door_clubs_2
+    scene Warframe with dissolve2
     "На улице было очень жарко, что меня не очень радовало."
     "Такое палящее солнце я никогда не любил."
     "*Хотя бы комаров нет, и на том спасибо."
+    stop ambience
     scene bg ext_dining_hall_away_sunset
+    play ambience ambience_medium_crowd_indoors_1 loop
     "Количество людей на квадратный метр зашкаливало."
     "Все пытались спрятаться под козырек и побыстрее войти в столовую, где всегда было прохладно из-за плитки на полу и на стенах."
     "Собственно, вожатым это играло даже на руку - не надо было строить детей, вся масса людей как-то сама собой превратилась в очередь за едой."
+    stop ambience
     scene bg int_dining_hall_people_day with dissolve
+    play ambience ambience_dining_hall_full loop
     "Я последовал примеру других пионеров и занял свое место."
-    scene bg ext_dining_hall_near_day
     "За мной почти сразу встали Ваня, Лёва и Даша."
     show Leva_defolt
     l "Как работа? Помог Мише?"
@@ -2265,7 +2325,9 @@ label GoDiner:
     "Ребята-то хорошие."
     "..."
     ""
+    stop ambience
     scene bg ext_dining_hall_near_day
+    play ambience ambience_camp_center_day loop
     "Мы управились с едой и вышли на крыльцо столовой, где нас уже ждал Кирилл Дмитриевич."
     show Kirill_defolt
     k  "Не хотите сходить на пляж? Поможете за младшими отрядами последить, да и сами дурью помаетесь, освежитесь."
@@ -2296,9 +2358,10 @@ label GoDiner:
     "*Если он вообще существовал."
     "Поэтому, конечно, администрации можно было бояться разве что пионеров, но и они не часто сюда совались."
     "Я взял купальные шорты, небольшое полотенце и тоже направился в сторону пляжа."
+    stop ambience
     scene bg ext_beach_day
+    play ambience ambience_lake_shore_day loop
     "На пляже уже купались пионеры."
-    play ambience ambience_lake_shore_day
     "Ребята из старших групп доплывали до буйков, а младшие, в то же время, строили песочные замки и плескались на берегу."
     "Недолго думая, я сбросил полотенце и вошёл в воду."
     #Звук плеск воды
@@ -2353,9 +2416,10 @@ label GoDiner:
     k  "Тогда вы оба вечером на площади."
     "Дима убежал."
     stop music
+    play ambience ambience_lake_shore_day loop
     hide dima_golii
     "*С позором - подумал я."
-    show Dach_Def at my_right
+    show Dach_Def
     da "А что происходит?"
     show Leva_defolt at my_left
     l "Я так понимаю, вечером будет ещё один инфоповод для стенгазеты."
@@ -2365,7 +2429,7 @@ label GoDiner:
     v  "Данил всегда в детском саду."
     hide Kirill_defolt
     hide Leva_defolt at my_left
-    hide Dach_Def at my_right
+    hide Dach_Def
     "*Вот это нож в спину от родного брата..."
     menu:
         "Позвать":
@@ -2395,7 +2459,9 @@ label GoDiner:
             "Даша, Лёва и Ваня пошли в сторону столовой, а мы с вожатым - в сторону домиков."
             "..."
             "..."
+            stop ambience
             scene bg ext_houses_day
+            play ambience ambience_camp_center_day loop
             d "А хорошо мы всё-таки лагерь построили."
             d "Я считаю, что это показывает нашу силу воли, показывает, что мы можем сделать что угодно, если захотим."
             k "Да, идейность!"
@@ -2405,6 +2471,7 @@ label GoDiner:
             show Kirill_defolt
             k  "Ну, до встречи на полднике!"
             hide Kirill_defolt
+            stop ambience
             "..."
             
         "Не звать людей строить лагерь из песка":
@@ -2436,11 +2503,20 @@ label GoDiner:
     scene bg ext_house_of_un_day with dissolve2 
     #звук двери
     play sound sfx_door_squeak_light
+    scene House_in_at_day with dissolve2
+    play ambience ambience_int_cabin_day loop
     "Только я зашёл в домик, сразу же репродуктор протрубел ту самую простую последовательность из 3 нот."
+    play sound sfx_dinner_horn_processed
     "Я быстро переоделся и побежал в сторону столовой."
-    scene bg ext_dining_hall_near_day
+    stop ambience
+    play sound sfx_door_squeak_light
+    scene bg ext_house_of_un_day with dissolve2
+    scene bg ext_dining_hall_near_day with dissolve2
+    play ambience ambience_camp_center_day
     "Когда я добежал о столовой, Кирилл Дмитриевич уже заходил внутрь."
     "*Как? Ему же вроде дальше, чем мне идти... Ну да ладно."
+    stop ambience
+    play ambience ambience_dining_hall_full loop
     scene bg int_dining_hall_people_day
     "Ваня, Даша, Лёва уже тоже были внутри. Кирилл Дмитриевич сидел с ними."
     "Они помахали мне рукой, приглашая к себе за стол."
@@ -2471,14 +2547,19 @@ label GoDiner:
     "И они ушли. "
     "Мы с Ваней мирно доели свои бутерброды и направились в сторону домика."
     "..."
+    stop ambience
     scene bg ext_square_day
+    play ambience ambience_camp_center_day loop
     "Ваня был немногословен, видимо, работа над стенгазетой его утомила."
     "На площади был замечен мой оппонент - Дима."
     "Он опять бегал туда-сюда с вёдрами.."
     "*Ну пусть старается, вечером мы выясним, кто круче..."
     #Картинка меняется на “домик снаружи”, потом на “домик внутри”
     scene bg ext_house_of_un_day with dissolve2
+    stop ambience
+    play sound sfx_open_door_1
     scene House_in_at_day with dissolve2
+    play ambience ambience_int_cabin_day
     "Мы пришли. "
     "Ваня сразу повалился на кровать и уснул."
     "Я же сел за стол, предвкушая написание моего рэп-текста."
@@ -2492,11 +2573,13 @@ label GoDiner:
     $ set_zone("library","LibraryGoGo")
     $ set_zone("me_mt_house","HomKirilDm")
     $ show_map()
+    stop ambience
 
     #Открывается карта, выбор между домиком ОЛЬГИ ДМИТРИЕВНЫ и библиотекой
 label LibraryGoGo:
     scene bg ext_library_day
     #При выборе “Библиотека”
+    play ambience ambience_int_cabin_day
     "Библиотека"
     "Наверное, стоит отправиться в библиотеку. Всё-таки, там больше всего шанс найти карандаш и лист бумаги в каком-нибудь клубе стенгазетчиков."
     #Картинка меняется на “библиотека”
@@ -2504,10 +2587,11 @@ label LibraryGoGo:
     "Снаружи было тихо."
     "Я решил зайти внутрь без стука."
     #Картинка меняется на “библиотека внутри”
+    stop ambience
     scene bg int_library_day
     show Dima_defolt
-    dz  "АГА!"
     play music music_list["doomed_to_be_defeated"]
+    dz  "АГА!"
     "Прозвучал Димин голос сбоку."
     dz  "Шпионить решил?"
     #1488
@@ -2522,9 +2606,11 @@ label LibraryGoGo:
     stop music
 label HomKirilDm:
     #!!!!!!!Если был выбран домик КД, то сразу эта часть!!!!!!"
+    scene bg ext_houses_day
+    play ambience ambience_camp_center_day loop
     "Я поплелся в сторону домика нашего вожатого."
     #Картинка “дорога в лагере”, “домик КД”
-    scene bg ext_houses_day
+    scene bg ext_house_of_mt_day
     "Пришел я к нему достаточно быстро."
     "Не знаю почему, но я даже немного заволновался, когда подошёл стучать в дверь."
     "Бывают иногда такие неожиданные всплески волнения."
@@ -2539,7 +2625,7 @@ label HomKirilDm:
     show blinking
     scene black with dissolve2
     #Включается белый шум
-    play sound whitt
+    play sound whitt loop
     "Мне снился сон, я был в своей комнате. Три голоса говорили в унисон."
     voice "Эх, Данил, почему же ты не пришел к нам..."
     voice "Да, мы тебя все ждали-ждали. И шли очень долго, и искали очень долго. Правда-правда, мы бы очень хотели с тобой встретиться... Ты же самое дорогое, что было у нас..."
@@ -2547,10 +2633,10 @@ label HomKirilDm:
     show blink
     show unblink 
     show blinking
-    scene bg ext_houses_day 
+    scene bg ext_house_of_mt_day
+    stop sound
     "Я резко проснулся и окинул взглядом всё вокруг. Рядом никого не было."
     "*И приснится же всякое..."
-    stop sound
     k  "Данил, а ты что тут сидишь?"
     show Kirill_defolt
     d "Э.. "
@@ -2567,12 +2653,15 @@ label HomKirilDm:
     hide Kirill_defolt
     "Честно говоря, не знаю, почему я так обрадовался получению блокнота, но назад я побежал, как маленький ребенок, которому подарили давно желанную игрушку."
     #Картинка меняется на “домик снаружи”
+    scene bg ext_house_of_un_day
     "Я добежал до своего домика и сел на ступеньки перед ним. Мысль сразу же порекла текой."
     "..."
     "..."
+    play sound sfx_dinner_horn_processed
     "Когда прозвенел звонок на ужин, мой текст уже был полностью готов."
     "*Ну всё, Дима, тебе не победить."
     "Ваня вышел из домика."
+    play sound sfx_open_door_1
     v  "Ты что делаешь?"
     d "А?"
     v  "Что ты делаешь?"
@@ -2585,22 +2674,24 @@ label HomKirilDm:
     "На крыльце уже стоял весь наш отряд."
     "Ребята стояли и о чем-то разговаривали, только Саша с Димой демонстративно не смотрели и не контактировали друг с другом. "
     #Картинка меняется на “столовая внутри”
+    stop ambience
     scene bg int_dining_hall_people_day
+    play ambience ambience_dining_hall_full loop
     "Мы зашли внутрь и взяли свои порции."
     "В этот раз нам пришлось сидеть одним, так как все пионеры нашего отряда разбрелись по разным столам."
     "..."
     "..."
     #Картинка меняется на “столовая крыльцо”
+    stop ambience
     scene bg ext_dining_hall_near_day
+    play ambience ambience_camp_center_day
     "Поужинав, мы вышли на крыльцо."
     show Leva_defolt
-    play ambience ambience_dining_hall_full
     l "Ну что, Даня, готов к состязанию с Димой?"
     "*Интересно, вот Дима знает про чизбургеры, но не знает ничего про рэп-баттлы, интересно."
     "*Поэтическое состязание..."
     d "Да, готов."
     l "Ну, давай тогда к площади, а я за фотоаппаратом."
-    stop ambience 
     #Картинка меняется на “площадь”
     scene bg ext_square_sunset
     "Мы пришли на площадь. Ваня сел на лавочку."
@@ -2618,7 +2709,8 @@ label HomKirilDm:
     "Последнего, видимо, назначали ведущим."
     show Misha_defolt
     mish  "Ну что, дорогие пионеры, добро пожаловать на поэтическое состязание!"
-    play music music_list["heather"]
+    stop ambience
+    play music music_list["heather"] loop
     hide Misha_defolt
     voice "УУУУУУ УРААА!!!"
     "Кто-то даже визжал. Видимо, и правда это было очень значимое событие в жизни лагеря."
@@ -2640,7 +2732,7 @@ label HomKirilDm:
     d "Ты видел пляж, раков, Алису и Ульянку?"
     d "Такое даже думать неприлично,"
     d "Ведь это лозунг безумного трепья."
-    d "ОкЛёветать строителей о браке,"
+    d "Оклеветать строителей о браке,"
     d "В песочной насыпи и пляже,"
     d "Отказать братьям по идеи, в их просьбах помогать,"
     d "И так в Совёнке дел не мало."
@@ -2691,6 +2783,7 @@ label HomKirilDm:
     hide Misha_defolt 
     "После этого мы пожали руки и обнялись."
     stop music
+    play ambience ambience_camp_center_day
     "Честно сказать, я был поражен."
     "Но все же надо было решить, как на это реагировать."
     
@@ -2729,7 +2822,10 @@ label HomKirilDm:
             hide Sasha_defolt
             "Мы отбили друг другу пять и разошлись."
             #Картинка меняется на “домик внутри”
+            play sound sfx_open_door_1
+            stop ambience
             scene House_in_at_night
+            play ambience ambience_int_cabin_night loop
             "Мы дошли до своего домика, сразу зашли внутрь."
             "Ваня был очень уставший и сразу лег спать."
             "*Хотя, я так и не понял, от чего он так сильно устал. Даже спокойной ночи не пожелал."
@@ -2743,6 +2839,7 @@ label HomKirilDm:
             "*Неужели придется опять вернуться в эту скучную реальность? Или, может быть, ещё хуже, остаться в этом мире, где мы никому не нужны..."
             "*Хотя, как не нужны, вот же, ребята, они нас любят, уважают. Помогут нам, что я переживаю..."
             "Глаза сами собой сомкнулись, мозг отключился."
+            stop ambience
             $ KK+=2
             
         "Объявить свою победу":
@@ -2773,7 +2870,10 @@ label HomKirilDm:
             "Ну и мне, конечно, пришлось пойти в свой домик."
             "..."
             #Картинка меняется на “домик внутри”
+            play sound sfx_open_door_1
+            stop ambience
             scene House_in_at_day
+            play ambience ambience_int_cabin_night
             "Мы дошли до своего домика, сразу зашли внутрь."
             "Ваня был очень уставший и сразу лег спать."
             "*Хотя, я так и не понял, от чего он так сильно устал. Даже спокойной ночи не пожелал."
@@ -2794,6 +2894,7 @@ label HomKirilDm:
             "Я не успел додумать."
             "Глаза сами собой сомкнулись, мозг отключился."
             "Я провалился в сон."
+            stop ambience
             
     ""
 
@@ -2807,14 +2908,17 @@ label Day5:
     #Картинка “мыльный потолок”
   
     #Стук в дверь
+    play ambience ambience_int_cabin_day loop
     play sound sfx_knock_door2
     "*Кто стучится в такую рань..."
     "Стук повторился."
     d "Сейчас."
+    play sound sfx_knock_door2
     "И снова постучали."
     "Ваня тоже только проснулся, но собрался раньше меня."
     v  "Кто?"
     scene House_in_at_day with dissolve2
+    play sound sfx_open_door_1
     "Сказал он, открыв дверь."
     "Я тоже встал к тому времени."
     #Картинка меняется на “домик внутри”
@@ -2826,12 +2930,16 @@ label Day5:
     da "Ну и так можно сказать."
     "Видимо, я сказал это вслух."
     da "Давайте быстрее, сегодня ещё работать всем надо будет."
+    play sound sfx_open_door_1
     hide Dach_Def
     "*Работать..."
     "Ну и ладно... Делать всё равно было нечего."
     "Мы быстро оделись и вышли на улицу."
     #Картинка меняется на “домик снаружи”
+    play sound sfx_open_door_1
+    stop ambience
     scene bg ext_house_of_un_day
+    play ambience ambience_camp_center_day loop
     v  "Даня, давай быстрей."
     d "Иду, иду."
     #Картинка меняется на “столовая”
@@ -2840,6 +2948,8 @@ label Day5:
     "Все они брали лопаты, грабли, метлы..."
     v  "И нас это тоже ждёт..."
     #Картинка меняется на “столовая внутри”
+    stop ambience
+    play ambience ambience_dining_hall_full loop
     scene bg int_dining_hall_people_day
     "Лёва и правда сторожил нам еду."
     show Leva_defolt
@@ -2856,13 +2966,14 @@ label Day5:
     "*Да, видимо тебе интереснее строить песочные домики, молодец."
     "Мы с Ваней доели свой завтрак и вышли из столовой."
     #Картинка “Столовая крыльцо”
+    stop ambience
     scene bg ext_dining_hall_near_day
+    play ambience ambience_camp_center_day loop
     "Возле складов сидел Кирилл Дмитриевич."
     "*Только не смотри в нашу сторону."
     "И он всё-таки посмотрел."
     show Kirill_defolt
     k  "Подойдите сюда."
-    play ambience ambience_camp_center_day
     #Картинка “склады”
     scene Sklad_Znaruji
     "Мы подошли."
@@ -2896,6 +3007,7 @@ label Day5:
     #Картинка меняется на “склад внутри”
     stop ambience
     scene Sklad_Vnutri
+    play ambience ambience_old_camp_outside loop
     "Внутри пахло сыростью."
     "*Собственно, как и во многих подобных помещёниях."
     "Тут были и старые плакаты, и какие-то кормушки, и лопаты, и грабли."
@@ -2921,10 +3033,14 @@ label Day5:
     "Итак уже перерасход царского имущества."
     "*Царского? Ммм... Партийного, во!"
     #Картинка меняется на “склад снаружи”
+    stop ambience
     scene Sklad_Znaruji
+    play ambience ambience_camp_center_day loop
     "Распихав все по карманам, я вышел из склада и направился на площадь, ведь там мы договаривались встретиться с Ваней."
     #Игра от лица Вани ( всплывающая надпись)
     #Сцена “Клуб кибернетиков внутри”
+    stop ambience
+    play ambience ambience_clubs_inside_day loop
     scene bg int_clubs_male_day
     "Игра от лица Вани"
     "Я находился у Миши. "
@@ -2940,6 +3056,7 @@ label Day5:
     "Первую рацию я нашёл быстро, она лежала прямо на столе около каких-то антенн. "
     "Я покрутил ползунок, который располагался возле антенны. "
     "Загорелся зелёный экранчик, устройство приятно зажужжало."
+    play sound sfx_radio_squelch_1
     "“Выберите частоту” -, гласила надпись на экранчике."
     "*Для начала надо найти вторую рацию."
     "..."
@@ -2969,9 +3086,11 @@ label Day5:
     mish  "Не хочешь - заставим. Можешь идти."
     hide Misha_defolt
     "Я вышел."
-    #Картинка меняется на “клубы снаружи”
-    scene bg ext_clubs_day
     play sound sfx_open_door_clubs
+    #Картинка меняется на “клубы снаружи”
+    stop ambience
+    scene bg ext_clubs_day
+    play ambience ambience_camp_center_day
     "Честно говоря, не понял суть последних слов Миши, ну да ладно."
     "Рации были у меня, и это было хорошо, поэтому я устремился в сторону площади, где меня, наверное, уже ждал Данил."
     "Игра от лица \“Данила”\ "
@@ -2985,10 +3104,14 @@ label Day5:
     v  "Ты ключи не потерял?"
     d "Да вроде нет."
     "Я пошарил руками в карманах, ключи действительно были со мной."
+    play sound sfx_keys_rattle
     v  "Ну, пойдём."
     #Картинка меняется на “домик”, потом на “домик внутри”
     scene bg ext_houses_day with dissolve2
+    stop ambience
+    play sound sfx_open_door_clubs
     scene House_in_at_day with dissolve2
+    play ambience ambience_int_cabin_day
     "*Забавно, даже Ваня вроде стал общительней и... Добрей?"
     "Хотя, добрым Ваня всегда вроде был. Точнее, никогда не был злым."
     "*Я этого не помню, значит этого не было!"
@@ -2996,10 +3119,14 @@ label Day5:
     "Кроме раций, рации мы оставили при себе."
     "Интересные же всё-таки штуки."
     #Картинка меняется на “Администрация”
+    stop ambience
     scene admin
+    play ambience ambience_camp_center_day
     "К администрации мы подошли быстро, всё-таки, она находилась в самом сердце лагеря."
     #Картинка меняется на “Администрация внутри”
+    stop ambience
     scene Admib_vntur
+    play ambience ambience_medstation_inside_day
     "Мы зашли внутрь и попали в совершенно обычное помещение рабочего типа."
     "Как у какого-нибудь директора в школе."
     "Стол, флаг советского союза, бумаги и всё прочее."
@@ -3039,7 +3166,9 @@ label Day5:
     "Собственно, все справки были готовы. "
     "Мы вышли из администрации."
     #Картинка меняется на “Администрация”
+    stop ambience
     scene admin
+    play ambience ambience_camp_center_day
     "Снаружи нас уже ждал Кирилл Дмитриевич."
     show Kirill_defolt
     k  "Ну как, сделали?"
@@ -3050,9 +3179,10 @@ label Day5:
     "Кирилл Дмитриевич кивнул и мы все вместе молча пошли к домику."
     #Картинка меняется на “домик снаружи”
     scene bg ext_house_of_un_day
-    
     "Мы дошли до нашего домика."
+    play sound sfx_open_door_1
     "Ваня вынес лопату, вожатый забрал ее."
+    play sound sfx_close_door_clubs_nextroom
     show Kirill_defolt
     k  "Всё, спасибо, идите на обед. Я занесу всё к себе."
     hide Kirill_defolt
@@ -3067,13 +3197,15 @@ label Day5:
     "*Особенно, когда ты идёшь есть и нет никакой работы на горизонте."
     #Картинка меняется на “столовая крыльцо”
     scene bg ext_dining_hall_near_day
+    play sound sfx_dinner_horn_processed
     "Мы были уже на крыльце, когда затрубили репродукторы."
     #Картинка меняется на “столовая внутри”
+    stop ambience
     scene bg int_dining_hall_people_day
+    play ambience ambience_dining_hall_full
     "Воспользовавшись своим ранним приходом, мы быстро взяли свои порции и сели за свободный стол."
     "Когда мы уже съели половину нашего обеда, к нам подсел Лёва."
     ""
-    play ambience ambience_dining_hall_full
     show Leva_defolt
     l "Приятного аппетита."
     v  "И тебе."
@@ -3113,13 +3245,14 @@ label Day5:
     #Картинка меняется на “столовая крыльцо”
     stop ambience 
     scene bg ext_dining_hall_near_day
+    play ambience ambience_camp_center_day
     "Вместе мы вышли из столовой."
     show Leva_defolt
     l "Ну, пойдемте."
     d "Веди, друг мой, показывай дорогу!"
     "*Захотелось говорить стихами."
     ""
-     scene bg ext_houses_day
+    scene bg ext_houses_day
     l "Прошу, следуй за мной, так ты отыщешь путь!"
     hide Leva_defolt
     "Продолжил Лёва, видимо подхватив мою идею стихоплётства."
@@ -3127,9 +3260,12 @@ label Day5:
     "*Так, нарифмовали слова под тему и нормально."
     "..."
     #Сцена “Библиотека внутри”
+    stop ambience
     scene bg int_library_day
+    play ambience ambience_library_day
     "Через 4 минуты мы были уже в библиотеке."
     "Там нас поджидала Даша."
+    stop ambience
     play music music_list["timid_girl"]
     show Dach_Def
     da "Так, Диму заставили чистить картошку в поход, поэтому библиотека тоже под нашей ответственностью."
@@ -3216,6 +3352,7 @@ label Day5:
     "..."
     "Мы допивали свой чай и тут..."
     stop music
+    play ambience ambience_library_day
     voice "ВНИМАНИЕ! Объявляется сбор на площади. Пятиминутная готовность к походу. Всем быть на площади через пять минут, повторяю, всем быть на площади ЧЕРЕЗ ПЯТЬ МИНУТ. "
     show Leva_defolt at my_left
     show Dach_Def at my_right 
@@ -3224,7 +3361,9 @@ label Day5:
     hide Leva_defolt at my_left
     hide Dach_Def at my_right 
     #Сцена “библиотека снаружи”
+    stop ambience
     scene bg ext_library_day
+    play ambience ambience_camp_center_day
     "Мы пошли по своим домикам."
     "Точнее сказать, побежали."
     #Картинка трясется, “путь к домикам” и “домик снаружи”, “площадь”
@@ -3238,7 +3377,9 @@ label Day5:
     "Остальные были весьма очевидные - Даша - Лёва, Ваня - я."
     k  "Выдвигаемся!"
     #Картинка меняется на “тропинка в лес”
+    stop ambience
     scene bg ext_path_day
+    play ambience ambience_day_countryside_ambience
     "Пионеры дружно замаршировали по тропинке в лес."
     "*Кто шагает дружно в ряд? Пионерский наш отряд!"
     "Отчеканивал я у себя в голове."
@@ -3249,7 +3390,6 @@ label Day5:
     "..."
     "Шли мы не очень долго, всего минут 30."
     "Наконец, мы добрались до полянки."
-    play ambience ambience_medium_crowd_outdoors
     #Картинка меняется на “полянка”
     scene bg ext_polyana_day
     "Кирилл Дмитриевич с Мишей быстро выложили костровище, немного окопав его с разных сторон и накидали дров."
@@ -3322,6 +3462,7 @@ label Day5:
     "*А что бы я делал в этой ситуации?.."
     d  "Сложно сказать.. Наверное..."
     "Меня перебил Дима."
+    stop ambience
     play music music_list["glimmering_coals"]
     show Dima_defolt  
     dz  "А я думаю, надо поджечь лес."
@@ -3336,6 +3477,7 @@ label Day5:
     dz  "Спасибо, Данил."
     dz  "Лучшего решения просто не найти. "
     stop music
+    play ambience ambience_day_countryside_ambience
     hide Dima_defolt at my_left
     hide Kirill_defolt at my_right
     "*Да, только русская смекалочка до такого додумается."
@@ -3358,7 +3500,9 @@ label Day5:
     "Костер был потушен, а пионеры пересчитаны и построены по парам."
     k  "Выдвигаемся!"
     #Картинка “дорога, ночь”
+    stop ambience
     scene bg ext_path_night
+    play ambience ambience_forest_night
     "По дороге домой почти никто уже не разговаривал. "
     "Были слышны только редкие фразы."
     "Я понимаю, почему так. "
@@ -3380,8 +3524,12 @@ label Day5:
     "Нам обоим было весело, но мы оба устали, поэтому долго поддерживать такое не могли. "
     #Картинка меняется на “домик снаружи”, потом на “домик внутри”, ночь
     scene bg ext_house_of_un_night with dissolve2
+    stop ambience
+    play sound sfx_open_door_1
     scene House_in_at_night with dissolve2
+    play ambience ambience_int_cabin_night
     "Мы зашли и сразу плюхнулись на свои кровати."
+    stop ambience
     play music music_list["sparkles"]
     v  "Спокойной ночи."
     d  "Спокойной."
@@ -3407,10 +3555,12 @@ label Day6:
     #День 6
 
     # Картинка “потолок”
+    play ambience ambience_int_cabin_day
     scene ceiling_day
     "Секретные методики сработали, я проснулся в 6 утра."
     #Картинка меняется на “домик внутри”
     scene House_in_at_day
+    play sound sfx_inhale
     "Я встал, открыл окно и вдохнул полной грудью."
     "Воздух был свежий, влажный и теплый, несмотря на то, что солнце только недавно взошло."
     "Пахло травой, какими-то цветами и хвойным лесом."
@@ -3437,9 +3587,11 @@ label Day6:
             v "Ладно, давай. "
             d "Тогда собирайся быстрее."
             #Картинка меняется на “домик снаружи”
+            stop ambience
+            play sound sfx_open_door_1
             scene bg ext_house_of_un_day
-            "Я вышел на улицу и сел на лавочку."
             play ambience ambience_camp_center_day
+            "Я вышел на улицу и сел на лавочку."
             "*Эх, хорошо тут..."
             "Я сорвал какую-то травинку, разорвал её на две части."
             "Одну я грыз, вторую вертел в руке, завязывая узелки и переплетая с какими-то другими травинками или палочками."
@@ -3450,9 +3602,7 @@ label Day6:
             "Мы не говорили между собой. "
             "Ваня шёл на автопилоте, а я думал о своем, о Данечьем, и наслаждался местной природой. "
             #Картинка меняется на “дорожка в лагере”
-            stop ambience
             scene bg ext_houses_day
-
             "По пути мы увидели кота."
             "Настоящего кота, который вылизывал себя."
             "Я поспешил подойти к нему, но как только я подошёл, толстый наглец убежал куда-то в кусты."
@@ -3461,18 +3611,23 @@ label Day6:
             play sound sfx_hiding_in_bush
             v "На кухне, он же весьма упитанный."
             "И правда, в логике моему брату не откажешь."
-            #Картинка меняется на “пляж” 
+            #Картинка меняется на “пляж”
+            stop ambience            
             scene bg ext_beach_day
             play ambience ambience_lake_shore_day
             "Спустя некоторое время мы дошли до пляжа."
             "Сложив все вещи, мы нырнули в холодную воду."
+            play sound sfx_draw_water
             v "А вода-то не такая уж и теплая…"
             d "А ты что думал? В сказку попал?"
             v "Ну, уж не в аквапарк я попал точно. "
             d "Хотя, что уж говорить, в аквапарке..."
             "Брат понял отсылку и улыбнулся."
+            play sound sfx_water_emerge
             "Я побрызгал на Ваню, Ваня брызнул в меня."
+            play sound sfx_water_emerge
             "…"
+            play sound sfx_shoulder_dive_water
             "Мы ещё немного поплавали, а потом вышли на берег."
             d "Ляпота!"
             v "Да, правда хорошо…"
@@ -3482,8 +3637,9 @@ label Day6:
             d "Может через лес?"
             v "Пойдём."
             #Картинка “тропинка в лесу”"
-            scene bg ext_path_day
             stop ambience
+            scene bg ext_path_day
+            play ambience ambience_camp_center_day
             d "И как тебе тут? Последний день всё-таки."
             v "Да хорошо в целом, только что дальше будет?"
             v "Всё-таки, лучше в своем мире, спокойнее как-то."
@@ -3498,6 +3654,7 @@ label Day6:
             d "Мы с пляжа, решили с утра искупаться."
             d "Последний день всё-таки."
             v "А ты откуда? "
+            stop ambience
             play music music_list["forest_maiden"]
             da "Я с леса, с полянки, с озера… Есть у меня места, знаете, любимые, которые хочется навсегда оставить в сердце."
             da "Мы тут последний год. Последний год мы собираемся вот так вот вместе. Дальше все разъедутся, мы войдём во взрослую жизнь."
@@ -3514,6 +3671,7 @@ label Day6:
             "Нашу компанию снова настигло тоскливое молчание."
             "И снова его первой нарушила Даша."
             stop music
+            play ambience ambience_camp_center_day
             da "Вы сейчас в лагерь идете? "
             "Она посмотрела на солнце."
             da "Скоро завтрак."
@@ -3529,13 +3687,20 @@ label Day6:
             #Картинка меняется на “дорога к домикам” и “домик снаружи”, “домик внутри”
             scene bg ext_houses_day with dissolve2
             scene bg ext_house_of_un_day
+            stop ambience
+            play sound sfx_open_door_1
             scene House_in_at_day
+            play ambience ambience_int_cabin_day
+            play sound sfx_dinner_horn_processed
             "Мы дошли до домика, переоделись и тут же прозвенел звонок на завтрак."
             "*Вот и славно, подкрепиться я не против."
         "Не звать Ваню":    
             "*Не буду будить, схожу один."
             #Картинка меняется на “домик снаружи”
+            play sound sfx_dinner_horn_processed
+            stop ambience
             scene bg ext_house_of_un_day
+            play ambience ambience_camp_center_day
             "Я вышел на улицу."
             "*Эх, хорошо тут."
             "Я сорвал какую-то травинку, разорвал её на две части."
@@ -3551,11 +3716,14 @@ label Day6:
             play sound sfx_hiding_in_bush
             "*На кухне, он же весьма упитанный."
             #Картинка меняется на “пляж” 
+            stop ambience
             scene bg ext_beach_day
             play ambience ambience_lake_shore_day
             "Спустя некоторое время я дошёл до пляжа."
+            play sound sfx_draw_water
             "Сбросив все вещи, я нырнул в холодную воду."
             "*Ой-ой-ой, хорошая водичка."
+            play sound sfx_shoulder_dive_water
             "Я проплыл туда-сюда несколько раз и выплыл на берег."
             "*Хорошо лежать на песке утром."
             "Небольшие волны разбивались о причал и немного шумели."
@@ -3563,11 +3731,12 @@ label Day6:
             "*Хорошо бы по нему пройтись на обратной дороге."
             "…"
             "Я полежал ещё немного. Потом встал и пошёл в сторону леса, срывая всякие хвоинки, травинки, пиная шишки."
-            stop ambience
             d "Ляпота-красота, любо такую жизнь жить!"
             "Громко проговорил я каким-то новгородским говором."
+            stop ambience
             #Картинка “тропинка в лесу”
             scene bg ext_path_day
+            play ambience ambience_camp_center_day
             "*А вот и лес! Какая прелесть."
             "Не верится, что это всё может быть реальностью."
             "И не верится, что это всё может закончится через день."
@@ -3589,6 +3758,7 @@ label Day6:
             "Мы прошли немного вперед."
             d "Откуда путь держишь?"
             show Dach_Def
+            stop ambience
             play music music_list["forest_maiden"]
             da "Я с леса, с полянки, с озера… Есть у меня места, знаешь, любимые, которые хочется навсегда оставить в сердце."
             da "Мы тут последний год. Последний год мы собираемся вот так вот вместе. Дальше все разъедутся, мы войдем во взрослую жизнь."
@@ -3612,6 +3782,7 @@ label Day6:
             da "Скоро завтрак"
             d "Ты по солнцу ориентируешься"
             stop music
+            play ambience ambience_camp_center_day
             da "Уметь надо!"
             "Я промолчал, такого я не ожидал."
             da "Ну ладно, до встречи в столовой!"
@@ -3620,7 +3791,10 @@ label Day6:
             "Я проводил её взглядом и двинулся в сторону домика."
             #Картинка меняется на “домик”, потом на “домик внутри”
             scene bg ext_house_of_un_day
+            stop ambience
+            play sound sfx_open_door_1
             scene House_in_at_day
+            play ambience ambience_int_cabin_day
             "К тому времени, как я пришёл, Ваня уже проснулся и сходил к умывальникам."
             "Теперь же он снова лежал на кровати, закинув ногу на ногу, а руки за голову."
             v "Куда ходил, где бродил? Доброе утро."
@@ -3631,7 +3805,9 @@ label Day6:
     v "Пошли в столовую?"
     d "Пошли."
     #Картинка меняется на “столовая”
+    stop ambience
     scene bg ext_dining_hall_away_day
+    play ambience ambience_camp_center_day
     "В столовую вяло тянулись пионеры."
     "Видимо, вчерашний поход их сильно утомил."
     "Кирилл Дмитриевич уже стоял на крыльце."
@@ -3642,11 +3818,12 @@ label Day6:
     "Что это были за маневры - никто не понял."
     "Зато последние слова вожатого все подняли довольно четко, ну и мы с Ваней устремились в столовую."
     #Картинка меняется на “столовая внутри”
+    stop ambience
     scene bg int_dining_hall_people_day
+    play ambience ambience_dining_hall_full
     "Сегодня нам повезло, весь наш отряд сел вместе. За большой стол в центре помещения."
     "…"
     "…"
-    play ambience ambience_dining_hall_full
     d "Приятного аппетита!"
     "…"
     "К нам подсел Кирилл Дмитриевич."
@@ -3676,8 +3853,8 @@ label Day6:
     stop ambience 
     #Картинка меняется на “сцена”
     scene bg ext_stage_normal_day
-    "Вместе с Сашей мы дошли до назначенного места."
     play ambience ambience_camp_center_day
+    "Вместе с Сашей мы дошли до назначенного места."
     "Он вручил нам по венику, и мы начали активно работать, выметая со сцены всю пыль."
     "…"
     "…"
@@ -3704,7 +3881,6 @@ label Day6:
     "Я кивнул."
     "*Наверное, я его понял."
     "Дальше мы шли молча, а Cаша о чём-то думал, то улыбаясь, то грустно смотря в сторону."
-    stop ambience
     #Картинка меняется на “склады”
     show Sasha_defolt
     s "Спасибо, поставьте все тут около забора, я дальше сам."
@@ -3717,13 +3893,12 @@ label Day6:
     #Картинка меняется на “столовая”
     scene bg ext_dining_hall_away_day
     "Возле столовой нас встретил Миша."
-    play ambience ambience_dining_hall_full
     show Misha_defolt
     mish "О, привет."
     mish "Давайте ко мне, дело есть."
     "Делать было нечего, мы с Ваней покорно пошли за Мишей. "
     stop ambience 
-    play music music_list["smooth_machine"] 
+    play music music_list["smooth_machine"] loop
     #Картинка меняется на “клубы”, “клубы внутри”
     scene bg ext_clubs_day
     scene bg int_clubs_male_day with dissolve2
@@ -3791,10 +3966,10 @@ label Day6:
     "Я растолкал Ваню и мы вместе отправились в столовую."
     #Картинка меняется на “столовая внутри”
     scene bg int_dining_hall_people_day
+    play ambience ambience_dining_hall_full
     "В столовой были все наши ребята."
     "Только Миша куда-то пропал, пока мы шли. "
     "Мы сели за столик к Лёве."
-    play ambience ambience_dining_hall_full
     show Leva_defolt
     l "А что вы такие измученные?"
     v "Да так…"
@@ -3818,6 +3993,7 @@ label Day6:
     stop ambience 
     #Картинка меняется на “столовая крыльцо”
     scene bg ext_dining_hall_near_day
+    play ambience ambience_camp_center_day
     "Мы доели свои порции и пошли с Кириллом Дмитриевичем в сторону спортивных площадок. "
     #Картинка меняется на “футбольное поле”
     scene bg ext_playground_day
@@ -3910,12 +4086,13 @@ label Day6:
     k "Пойдёмте на полдник, перекусим."
     hide Kirill_defolt
     #Картинка меняется на “столовая внутри”
+    stop ambience
     scene bg int_dining_hall_people_day
+    play ambience ambience_dining_hall_full
     "Внутри нас ждали ватрушки."
     "И Дима, куда уж без него."
     "Он подошёл к нам."
     show Dima_defolt
-    play ambience ambience_dining_hall_full
     dz "Ребят, вы сегодня всем помогаете.. А мне поможете?"
     d "А ты не обнаглел, Димас?!"
     dz "Ну почему же обнаглел, помощь друзей хочу увидеть, я же тоже не бездельничаю…"
@@ -3937,7 +4114,9 @@ label Day6:
     dz "Спасибо, ребят, пойдемте в клуб геополитики."
     hide Dima_defolt
     #Картинка меняется на “клуб геополитики”
+    stop ambience
     scene bg int_library_day
+    play ambience ambience_library_day
     show Dima_defolt
     dz "Так, наша задача - скрепить все мои карты."
     dz "Ничего сложного, смотрите."
@@ -3967,12 +4146,14 @@ label Day6:
     show Dima_defolt
     dz "Ну всё, теперь можно и на обед, кстати, где ЗВО…"
     hide Dima_defolt
+    play ambience ambience_library_day
     "Тут звонок и прозвенел, не дав Диме договорить."
     "Я с этого посмеялся."
     "Мы направились в столовую."
     stop ambience 
     #Картинка “столовая внутри”
     scene bg int_dining_hall_people_day
+    play ambience ambience_dining_hall_full
     "Ужин был обычный, разве что разговоров не было, все сильно устали."
     "На выходе нас собрал Кирилл Дмитриевич."
     show Kirill_defolt at my_right
@@ -3985,15 +4166,20 @@ label Day6:
     l "Не руками грести, уже хорошо."
     k "Ну вот и отлично."
     #Картинка меняется на “пристань”
+    stop ambience
     scene bg ext_boathouse_day
+    play ambience ambience_boat_station_day loop
     "Мы зашли на палубу небольшого катера. Как раз для всего нашего отряда."
     "Уже начинало темнеть, поэтому атмосфера становилась интимнее."
     "Предвкушая свечку, все молчали."
     "…"
     #Картинка меняется на “остров” 
+    stop ambience
     scene bg ext_island_night
+    play ambience ambience_boat_station_night loop
     "Доплыли мы минут за 10, достаточно быстро. Мы сошли на берег."
     "Кирилл Дмитриевич с Мишей припарковали катер."
+    stop ambience
     play music music_list["reminiscences"]
     show Kirill_defolt
     k "Давайте, рассаживайтесь по кругу."
@@ -4074,18 +4260,21 @@ label Day6:
     "Мы собрались и поплыли назад."
     "Никто не разговаривал, меланхоличное настроение захватило нас."
     stop music
+    play ambience ambience_boat_station_day
     #Черный экран, картинка причала
     scene black with dissolve2
     scene bg ext_boathouse_night
     "Мы пришвартовались к берегу."
-    play ambience ambience_boat_station_day
     "Все пожелали друг другу спокойной ночи и разошлись."
     stop ambience
+    play ambience ambience_camp_center_night
     #Картинка “домик снаружи, домик внутри” 
     scene bg ext_house_of_un_night
+    stop ambience
+    play sound sfx_open_door_1
     scene House_in_at_night
-    "Мы дошли до своего дома."
     play music music_list["memories_piano_outdoors"]
+    "Мы дошли до своего дома."
     v "Ну всё, завтра последний день… "
     d "Последнее утро тут, мы днём уезжаем."
     v "Эх, да…"
@@ -4105,15 +4294,21 @@ label Day_7:
     $ new_chapter(7, translation_new["day1"])
     $ day_time()
     scene House_in_at_day
+    play ambience ambience_int_cabin_day
     "Горн разбудил нас в 8 часов утра."
     play sound sfx_dinner_horn_processed
     "Поздновато…"
     "Ваня проснулся одновременно со мной, и мы как-то автоматически, без лишних слов и разговоров, оделись и пошли в сторону умывальников."
+    stop ambience
+    play sound sfx_open_door_1
     scene bg ext_house_of_un_day
+    play ambience ambience_camp_center_day
     scene bg ext_washstand_day with dissolve2
     "Видимо, пионеры по привычке пробудились раньше, ибо у умывальников никого не было."
+    play sound sfx_open_water_sink
     scene bg ext_washstand2_day
     scene bg ext_washstand_day with dissolve2
+    play sound sfx_close_water_sink
     "Быстро умывшись, мы пошли в сторону площади."
     "*Может хоть там кого-нибудь встретим и узнаем расписание."
     scene bg ext_square_day
@@ -4161,6 +4356,7 @@ label Day_7:
     scene bg ext_house_of_un_day
     "Мы взяли то немногочисленное, что должны были увезти с собой, закрыли дверь домика и пошли к остановке."
     scene bg ext_bus
+    stop ambience
     play music music_list["what_do_you_think_of_me"]
     "Все пионеры стояли и разговаривали друг с другом. Видно было, что лагерная жизнь не оставила никого равнодушным. Ребята обнимались и говорили друг другу много тёплых слов."
     "Так продолжалось 10 минут."
@@ -4199,12 +4395,12 @@ label Day_7:
     "Мы сели и пристегнулись."
     "Последние пионеры заняли свободные места, автобус тронулся."
     "Первые 30 минут ничего не происходило."
-    stop music
     "*Так странно, я впервые покидаю этот лагерь."
     "*Действительно покидаю, не топчусь на месте."
     "…"
     "Я думал о разном. Вспоминал все моменты, которые мы тут пережили, думал о том, что с нами будет в этом мире."
     "Я уже начал верить, что мы никогда не вернемся туда, откуда пришли."
+    stop music
     
     if KK == 6 :
         jump GoodEnd
@@ -4217,6 +4413,7 @@ label Day_7:
     
 
 label GoodEnd:
+    play music music_list["dance_of_fireflies"] loop
     "Вдруг все резко как-то закрутилось."
     #Картинка меняется на размытую
     scene blurred
@@ -4255,8 +4452,9 @@ label GoodEnd:
     "…"
     #Снова появляется та же картинка комнаты, что и из пролога.
     #Дневник
+    stop music
     scene Prolog_0_Dan_Writ
-    play music music_list["lets_be_friends"]
+    play music music_list["lets_be_friends"] loop
     "Здравствуй, дневник. Снова мы встретились с тобой в этот день. 2028 год. "
     "Ровно 3 года и семь дней назад я точно так же рассказывал тебе о своей жизни. В это же время и в этом же месте."
     "Однако, кое-что на этот раз изменилось.."
@@ -4307,17 +4505,17 @@ label GoodEnd:
     #Снова Данил с дневником, экран снова чернеет. Потом экран светлеет, включается музыка из бл и продолжается слайдшоу с нашими фотокарточками
     "…"
     #Окошко с текстом 
-    stop music
     "У каждой истории есть начало и конец. У каждой истории есть своя канва, синопсис, содержание, ключевые моменты, прологи и эпилоги. И нет такой книги, в которой при каждом новом прочтении не открывались бы вещи, на которые раньше не обращал внимания..."
+    stop music
     return
 
 label BedEnd:
+    play music music_list["torture"]
     "Мои грёзы о новом мире обрушил Ваня."
     v "Смотри!"
     #Картинка тот же автобус, но под черным фильтром 
     scene bg int_bus_black
     "Он указал в сторону пионеров."
-    play music music_list["torture"]
     "Я повернул голову и побледнел, в голове начало колоть."
     "Все пионеры резко перестали иметь четкие контуры, цвета. Они размылись, начали растворяться в окружающем мире."
     "Все, кроме членов нашего отряда."
@@ -4369,6 +4567,7 @@ label BedEnd:
     #Картинка потолка
     scene ceiling with dissolve2
     stop music
+    play music music_list["you_lost_me"] loop
     "*Что случилось?"
     "*Неужели всё… Закончилось?"
     "*Нет, нет, нет…"
@@ -4427,7 +4626,8 @@ label BedEnd:
     "…"
     #Дневник, как в прологе  
     scene Prolog_0_Dan_Writ
-    play music music_list["i_dont_blame_you"]
+    stop music
+    play music music_list["i_dont_blame_you"] loop
     "Прошло уже много лет. Неважно сколько."
     "Если измерять по количеству событий в моей жизни, едва ли наберется неделя."
     "Тем не менее, привычное всем время шло, не сбавляя шаг…"
@@ -4492,14 +4692,16 @@ label BedEnd:
     "Я снова пришел к одним и тем же мыслям, да и записей таких в тебе уже десятки."
     "Мысль о “другом мире” дает мне надежду и даже какие-то жизненные силы."
     "За возможность дойти до этой мысли я и благодарен тебе…"
-    stop music
     #Картинка потолка
     scene ceiling
     "А теперь…"
     "Спать…."
+    stop music
     #Черный экран, музыка из бл
     play music music_list["everlasting_summer"]
     scene bg black
+    "У каждой истории есть начало и конец. У каждой истории есть своя канва, синопсис, содержание, ключевые моменты, прологи и эпилоги. И нет такой книги, в которой при каждом новом прочтении не открывались бы вещи, на которые раньше не обращал внимания..."
+    stop music
     return
 label SoSoEnd:
     "Глаза начали закрываться сами собой, а я, как послушный человек, поддался желанию поспать."
@@ -4607,8 +4809,10 @@ label SoSoEnd:
     "*Просто не терять шанс…"
     window hide
     #Черный экран
+    play music music_list["everlasting_summer"]
     scene bg black
-    "…"
+    "У каждой истории есть начало и конец. У каждой истории есть своя канва, синопсис, содержание, ключевые моменты, прологи и эпилоги. И нет такой книги, в которой при каждом новом прочтении не открывались бы вещи, на которые раньше не обращал внимания..."
+    stop music
     return
 
 
